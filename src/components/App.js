@@ -1,7 +1,9 @@
 import Box from './Box';
+import Fish from './Fish';
 import NavBar from './NavBar';
 import React from 'react';
 import Villagers from './Villagers';
+import Welcome from './Welcome';
 import acnh from '../api/acnhapi';
 
 class App extends React.Component {
@@ -27,11 +29,13 @@ class App extends React.Component {
         <NavBar
           renderSelect={this.onSelect}
         />
+        <Welcome />
         <Box
         />
-        <Villagers 
+        {/* <Villagers 
         data={this.state.data}
-        />
+        /> */}
+        <Fish />
       </div>
     );
   }
