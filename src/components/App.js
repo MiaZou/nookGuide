@@ -1,5 +1,5 @@
-import Box from './Box';
 import Fish from './Fish';
+import GoogleAuth from './GoogleAuth';
 import NavBar from './NavBar';
 import React from 'react';
 import Villagers from './Villagers';
@@ -8,7 +8,7 @@ import acnh from '../api/acnhapi';
 
 class App extends React.Component {
   state = {'param' : 'villagers/', 'data':''};
-
+  
   componentDidMount() {
     this.onCurrent(this.state.param);
   }
@@ -26,16 +26,17 @@ class App extends React.Component {
     return (
       <div className="App">
         App
-        <NavBar
-          renderSelect={this.onSelect}
-        />
-        <Welcome />
-        <Box
-        />
+        <div className="navBarwLogin">
+          <NavBar
+            renderSelect={this.onSelect}
+          />
+          <GoogleAuth />
+        </div>
         {/* <Villagers 
         data={this.state.data}
         /> */}
         <Fish />
+        <Welcome />
       </div>
     );
   }
