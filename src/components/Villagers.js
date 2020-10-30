@@ -1,8 +1,11 @@
 import React from 'react';
+import acnh from '../api/acnhapi';
 
 class Villagers extends React.Component {
+    
+
+
     renderData = (data) => {
-        console.log(data[0]);
         if (data) {
             return data.map(element => {
                 return (

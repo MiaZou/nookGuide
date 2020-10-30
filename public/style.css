@@ -21,6 +21,7 @@ html {
     display: inline-flex;
     background-color: rgba(236, 90, 5, 0.991);
     font-size: 24px;
+    text-decoration: none;
     width: fit-content;
     padding-left: 20px;
     padding-right: 25px;
@@ -43,9 +44,32 @@ html {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(247, 247, 238);
-    width: 600px;
-    height: 500px;
+    min-width: 900px;
+    min-height: 700px;
     border-radius: 15px;
+}
+
+.welcomeTitle {
+    background-color: rgb(84, 150, 209);
+    min-height: 50px;
+    padding: 5px;
+    margin: 15px;
+    border-radius: 15px;
+    color: white;
+    font-size: 48px;
+    text-align: center;
+}
+
+.welcomeIntro {
+    display: flex;
+}
+
+.welcomeGreeting {
+    font-size: 18px;
+    letter-spacing: 2px;
+    line-height: 35px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .villagerBox {

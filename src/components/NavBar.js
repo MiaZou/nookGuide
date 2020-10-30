@@ -1,36 +1,18 @@
+import { Link } from 'react-router-dom';
+import NavContext from '../reducers/navReducer';
 import React from 'react';
 
-const navItems = [
-  { 'name': 'Villagers', 'icon': '../images/Isabelle.png', 'param': 'villagers/'},
-  { 'name': 'Fish', 'icon': '../images/fish.png', 'param': 'fish/'},
-  { 'name': 'Sea Creatures', 'icon': '../images/seaCreatures.png', 'param': 'sea/'},
-  { 'name': 'Bugs', 'icon': '../images/bug.png', 'param': 'bugs/'},
-  { 'name': 'Fossils', 'icon': '../images/fossil.png', 'param': 'fossils/'},
-  { 'name': 'Art', 'icon': '../images/art.png', 'param': 'art/'},
-];
-
 class NavBar extends React.Component {
-  state = {selectedIndex: 0};
-  
-  selectItem = (index) => {
-    this.setState({selectedIndex: index});
-    const param = navItems[index]['param'];
-    this.props.renderSelect(param);
-  };
-
   render() {
     return (
     <div className="navBars">
-      {navItems.map((value, index) => {
-      return (
-        <div key={index} onClick={() => this.selectItem(index)} className='navItems'>
-          <img src={value.icon} alt='' />
-          {value.name}
-        </div>
-      );
-      })}
+      <Link to="/villager" className="navItems"><img src="../images/Isabelle.png" alt="" />Villagers</Link>
+      <Link to="/fish" className="navItems"><img src="../images/fish.png" alt="" />Fish</Link>
+      <Link to="/sea" className="navItems"><img src="../images/seaCreatures.png" alt="" />Sea Creatures</Link>
+      <Link to="/bug" className="navItems"><img src="../images/bug.png" alt="" />Bug</Link>
+      <Link to="/fossils" className="navItems"><img src="../images/fossil.png" alt="" />Fossil</Link>
+      <Link to="/art" className="navItems"><img src="../images/art.png" alt="" />Art</Link>
     </div>
-      
     )};
 }
 
