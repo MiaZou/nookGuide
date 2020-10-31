@@ -1,11 +1,9 @@
-import Fish from './components/Fish';
+import ContentBox from './components/ContentBox';
 import GoogleAuth from './GoogleAuth';
 import NavBar from './components/NavBar';
 import { Provider } from 'react-redux';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Villagers from './components/Villagers';
-import Welcome from './components/Welcome';
 import store from './store';
 
 class App extends React.Component {
@@ -18,7 +16,7 @@ class App extends React.Component {
               <NavBar />
               <GoogleAuth />
             </div>
-          <Router path="/:filter?" component={Villagers} />
+          <ContentBox />
           </Router>
         </Provider>
       </div>

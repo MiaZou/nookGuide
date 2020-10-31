@@ -1,11 +1,11 @@
 import { FETCH_NAV } from './types';
 import acnh from '../api/acnhapi';
 
-export const fetchNav = (navParam) => dispatch => {
-    const response = await acnh.get(param);
-    response => dispatch({
+export const fetchNav = (navParam) => async dispatch => {
+    const response = await acnh.get(navParam);
+    console.log(response.data);
+    dispatch({
         type: FETCH_NAV,
         payload: response.data
     });
-    
 }
