@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Welcome from './Welcome';
 import { connect } from 'react-redux';
 import { fetchNav } from '../actions/navActions';
 
 class ContentBox extends React.Component {
     componentDidUpdate() {
-        console.log('updates');
         this.renderContent();
     }
 
     renderContent() {
-        if (this.props.data.navData.length === 0) {
+        if (this.props.data.navParam === '') {
             return (
                 <div className="welcomeBox">
                 <div className="welcomeTitle">Welcome</div>
@@ -29,7 +27,8 @@ class ContentBox extends React.Component {
                 </div>
             </div>
             );
-        } else return this.props.data.navData.map(element => {
+        } else if (this.props.data.navParam === 'villagers') {
+            return this.props.data.navData.map(element => {
             return (
             <div className='villager' key={element['id']}>
                 <img src={element['image_uri']} alt='' />
@@ -41,7 +40,62 @@ class ContentBox extends React.Component {
                 <div className='saying'>Saying: {element['saying']}</div>
             </div>
             );
-        });
+        });} else if (this.props.data.navParam === 'fish') {
+            return this.props.data.navData.map(element => {
+                console.log(element);
+                return (
+                <div className='fish' key={element['id']}>
+                    <img src={element['icon_uri']} alt='' />
+                    <div className='fishName'>{element['name']['name-USen']}</div>
+                    <div className='fishPrice'>Price: {element['price']}</div>
+                </div>
+                );
+            })
+        } else if (this.props.data.navParam === 'sea') {
+            return this.props.data.navData.map(element => {
+                console.log(element);
+                return (
+                    <div className='sea' key={element['id']}>
+                        <img src={element['icon_uri']} alt='' />
+                        <div className='seaName'>{element['name']['name-USen']}</div>
+                        <div className='seaSpeed'>{element['speed']}</div>
+                        <div className='seaPrice'>Price: {element['price']}</div>
+                    </div>
+                )
+            })
+        } else if (this.props.data.navParam === 'bugs') {
+            return this.props.data.navData.map(element => {
+                console.log(element);
+                return (
+                    <div className='bug' key={element['id']}>
+                        <img src={element['icon_uri']} alt='' />
+                        <div className='bugName'>{element['name']['name-USen']}</div>
+                        <div className='bugPrice'>{element['price']}</div>
+                    </div>
+                )
+            })
+        } else if (this.props.data.navParam === 'fossils') {
+            return this.props.data.navData.map(element => {
+                console.log(element);
+                return (
+                    <div className='fossils' key={element['id']}>
+                        <img src={element['image_uri']} alt='' />
+                        <div className='fossilName'>{element['name']['name-USen']}</div>
+                        <div className='fossilPrice'>{element['price']}</div>
+                    </div>
+                )
+            })
+        } else if (this.props.data.navParam === 'art') {
+            return this.props.data.navData.map(element => {
+                console.log(element);
+                return (
+                    <div className='art' key={element['id']}>
+                        <img src={element['image_uri']} alt='' />
+                        <div className='artName'>{element['name']['name-USen']}</div>
+                    </div>
+                )
+            })
+        }
     }
 
     render() {

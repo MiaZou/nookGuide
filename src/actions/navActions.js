@@ -6,6 +6,7 @@ export const fetchNav = (navParam) => async dispatch => {
     console.log(response.data);
     dispatch({
         type: FETCH_NAV,
+        param: navParam,
         payload: response.data
     });
 }
