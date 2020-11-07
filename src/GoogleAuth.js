@@ -1,50 +1,62 @@
-import Cookies from 'js-cookie';
-import GoogleLogin from 'react-google-login';
+import GoogleLogin, { GoogleLogout } from 'react-google-login';
+
+import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
+import { updateUser } from './actions/navActions';
+
 class GoogleAuth extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  onLogin = (response) => {
+    const currUser = response.googleId;
+    this.props.updateUser(currUser, true);
+  }
 
-  // getAccessToken = () => Cookies.get('access_token');
-  // getRefreshToken = () => Cookies.get('refresh_token');
-  // isAuthenticated = () => !!getAccessToken();
+  onLoginFailure = (response) => {
+    alert('Login Error Occurred');
+  }
 
-  // authenticate = async () => {
-  //   responseGoogle = (response) => {
-  //       console.log(response.profileObj);
-  //   }
+  onLogout = (response) => {
+    this.props.updateUser('', false);
+  }
 
-  //   if (getRefreshToken()) {
-  //       try {
-  //         const tokens = await refreshTokens() // call an API, returns tokens
-    
-  //         const expires = (tokens.expires_in || 60 * 60) * 1000
-  //         const inOneHour = new Date(new Date().getTime() + expires)
-    
-  //         // you will have the exact same setters in your Login page/app too
-  //         Cookies.set('access_token', tokens.access_token, { expires: inOneHour })
-  //         Cookies.set('refresh_token', tokens.refresh_token)
-    
-  //         return true
-  //       } catch (error) {
-  //         redirectToLogin()
-  //         return false
-  //       }
-  //     }
-    
-  //     redirectToLogin()
-  //     return false
-  //   }
+  onLogoutFailure = (response) => {
+    alert('Logout Error!');
+  }
+
   render() {
     const OAUTH_KEY = process.env.REACT_APP_GOOGLE_OAUTH_API_KEY;
     return (
+      !this.props.isSignedIn ?
     <GoogleLogin 
         clientId={OAUTH_KEY}
         buttonText="Login"
-        onSuccess={this.responseGoogle}
-        onFailure={this.responseGoogle}
+        onSuccess={this.onLogin}
+        onFailure={this.onLoginFailure}
         cookiePolicy={'single_host_origin'}
     />
+      : 
+      <GoogleLogout
+        clientId={OAUTH_KEY}
+        buttonText="Logout"
+        onSuccess={this.onLogout}
+        onFailure={this.onLogoutFailure}
+        cookiePolicy={'single_host_origin'}
+      />
     );
   }
 }
 
-export default GoogleAuth;
+GoogleAuth.propTypes = {
+  updateUser: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({
+  isSignedIn: state.data.isSignedIn,
+  user: state.data.user
+});
+
+export default connect(mapStateToProps, {updateUser})(GoogleAuth);

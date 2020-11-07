@@ -14,7 +14,6 @@ class App extends React.Component {
           <Router>
             <div className="navBarwLogin">
               <NavBar />
-              <GoogleAuth />
             </div>
           <ContentBox />
           </Router>

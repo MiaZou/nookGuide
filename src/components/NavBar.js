@@ -5,7 +5,6 @@ import { fetchNav } from '../actions/navActions';
 
 class NavBar extends React.Component {
   onClick(param) {
-    // console.log(param);
     this.props.fetchNav(param);
   }
 

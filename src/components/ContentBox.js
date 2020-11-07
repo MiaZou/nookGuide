@@ -1,36 +1,52 @@
+import GoogleAuth from '../GoogleAuth';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchNav } from '../actions/navActions';
 
 class ContentBox extends React.Component {
-    componentDidUpdate() {
+    componentDidUpdate= () => {
         this.renderContent();
     }
 
-    renderContent() {
+    addToDB = (param, id) => {
+        console.log(param, id);
+        if (param === 'villagers') console.log(id);
+    }
+
+    renderContent = () => {
         if (this.props.data.navParam === '') {
-            return (
-                <div className="welcomeBox">
-                <div className="welcomeTitle">Welcome</div>
-                <div className="welcomeIntro">
-                    <img src="https://nooksguide.com/images/characters/nook.png" alt="" />
-                    <div className="welcomeGreeting">
-                        <p>
-                            Hello, welcome to Nooks Guide.
-                        </p>
-                        <p>
-                            This guide will show different information depending on what your island time and date is set to. So before you go any Further please select your timezone, month, and hemisphere.
-                            Once you have done this you are free to change them.
-                        </p>
+            if (this.props.data.isSignedIn) {
+                return (
+                    <div>
+                    Welcome
+                    <GoogleAuth />
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="welcomeBox">
+                    <div className="welcomeTitle">Welcome</div>
+                    <div className="welcomeIntro">
+                        <img src="https://nooksguide.com/images/characters/nook.png" alt="" />
+                        <div className="welcomeGreeting">
+                            <p>
+                                Hello, welcome to Nooks Guide.
+                            </p>
+                            <p>
+                                This guide will show different information depending on what your island time and date is set to. Please Login before further action.
+                            </p>
+                            <GoogleAuth />
+                        </div>
                     </div>
                 </div>
-            </div>
-            );
+                );
+            }
         } else if (this.props.data.navParam === 'villagers') {
             return this.props.data.navData.map(element => {
             return (
             <div className='villager' key={element['id']}>
+                <button onClick={() => this.addToDB(this.props.data.navParam, element['id'])}/>
                 <img src={element['image_uri']} alt='' />
                 <div className='villagerName'>{element['name']['name-USen']}</div>
                 <div className='gender'>Gender: {element['gender']}</div>
@@ -113,7 +129,7 @@ ContentBox.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    data: state.navData
+    data: state.data
 });
 
 export default connect(mapStateToProps, { fetchNav })(ContentBox);
