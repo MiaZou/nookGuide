@@ -14,7 +14,7 @@ class ContentBox extends React.Component {
         if (param === 'villagers') console.log(id);
     }
 
-    renderContent = () => {
+    renderContent = async () => {
         if (this.props.data.navParam === '') {
             if (this.props.data.isSignedIn) {
                 return (
