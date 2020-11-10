@@ -1,5 +1,4 @@
 import ContentBox from './components/ContentBox';
-import GoogleAuth from './GoogleAuth';
 import NavBar from './components/NavBar';
 import { Provider } from 'react-redux';
 import React from 'react';

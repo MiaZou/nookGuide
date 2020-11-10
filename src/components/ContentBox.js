@@ -9,12 +9,8 @@ class ContentBox extends React.Component {
         this.renderContent();
     }
 
-    addToDB = (param, id) => {
-        console.log(param, id);
-        if (param === 'villagers') console.log(id);
-    }
-
-    renderContent = async () => {
+    renderContent = () => {
+        console.log(this.props.data);
         if (this.props.data.navParam === '') {
             if (this.props.data.isSignedIn) {
                 return (
@@ -24,22 +20,23 @@ class ContentBox extends React.Component {
                     </div>
                 );
             } else {
+                console.log('here');
                 return (
                     <div className="welcomeBox">
-                    <div className="welcomeTitle">Welcome</div>
-                    <div className="welcomeIntro">
-                        <img src="https://nooksguide.com/images/characters/nook.png" alt="" />
-                        <div className="welcomeGreeting">
-                            <p>
-                                Hello, welcome to Nooks Guide.
-                            </p>
-                            <p>
-                                This guide will show different information depending on what your island time and date is set to. Please Login before further action.
-                            </p>
-                            <GoogleAuth />
+                        <div className="welcomeTitle">Welcome</div>
+                        <div className="welcomeIntro">
+                            <img src="https://nooksguide.com/images/characters/nook.png" alt="" />
+                            <div className="welcomeGreeting">
+                                <p>
+                                    Hello, welcome to Nooks Guide.
+                                </p>
+                                <p>
+                                    This guide will show different information depending on what your island time and date is set to. Please Login before further action.
+                                </p>
+                                <GoogleAuth />
+                            </div>
                         </div>
                     </div>
-                </div>
                 );
             }
         } else if (this.props.data.navParam === 'villagers') {
@@ -117,7 +114,6 @@ class ContentBox extends React.Component {
     render() {
         return (
             <div>
-                This is ContentBox
                 {this.renderContent()}
             </div>
         );

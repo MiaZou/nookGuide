@@ -6,9 +6,6 @@ import { connect } from 'react-redux';
 import { updateUser } from './actions/navActions';
 
 class GoogleAuth extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   
   onLogin = (response) => {
     const currUser = response.googleId;
