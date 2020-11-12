@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+import GoogleAuth from '../GoogleAuth';
 
 export default class Welcome extends Component {
     render() {

@@ -1,6 +1,5 @@
-import { Route, Router, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import ContentBox from './components/ContentBox';
 import Fish from './components/Fish';
 import NavBar from './components/NavBar';
 import { Provider } from 'react-redux';
@@ -14,7 +13,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Provider store={store}>
-          <Router>
+          <BrowserRouter>
             <div className="navBarwLogin">
               <NavBar />
               <Switch>
@@ -23,8 +22,7 @@ class App extends React.Component {
                 <Route path='/fish' component={Fish} />
               </Switch>
             </div>
-          <ContentBox />
-          </Router>
+          </BrowserRouter>
         </Provider>
       </div>
     );

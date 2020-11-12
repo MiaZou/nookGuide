@@ -9,9 +9,7 @@ class ContentBox extends React.Component {
         this.renderContent();
     }
 
-    renderContent = () => {
-        console.log(this.props.data);
-        if (this.props.data.navParam === '') {
+    renderContent = () => { 
             if (this.props.data.isSignedIn) {
                 return (
                     <div>
@@ -39,7 +37,7 @@ class ContentBox extends React.Component {
                     </div>
                 );
             }
-        } else if (this.props.data.navParam === 'villagers') {
+        if (this.props.data.navParam === 'villagers') {
             return this.props.data.navData.map(element => {
             return (
             <div className='villager' key={element['id']}>
