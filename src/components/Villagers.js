@@ -5,17 +5,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class Villagers extends Component {
-    // componentDidMount = () => {
-    //     const currentVillagers = this.props.fetchVillagers(this.props.data.currentUser);
-    //     console.log(currentVillagers, 'THISIS CURRENT VILLAGERS');
-    // }
+    componentDidMount = () => {
+        if (this.props.data.isSignedIn) {
+            this.props.fetchVillagers(this.props.data.currentUser);
+        } 
+    }
+
     componentDidUpdate = () => {
         this.renderVillagerData();
     }
 
     renderVillagerData = () => {
-        // const currentVillagers = this.props.fetchVillagers(this.props.data.currentUser);
-        // console.log(currentVillagers);
+        const currentVillagers = this.props.data.villagers;
+        console.log(currentVillagers, 'THISIS CURRENT VILLAGERS');  
         // if (!this.props.data.isSignedIn) return (
         //     <div>
         //         Please login!
